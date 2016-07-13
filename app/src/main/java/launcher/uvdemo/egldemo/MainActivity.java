@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends FragmentActivity implements EGLFragment.OnFragmentInteractionListener {
     @Override
@@ -20,17 +22,19 @@ public class MainActivity extends FragmentActivity implements EGLFragment.OnFrag
 
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(view,"ScaleX",1,0);
-                objectAnimator.setDuration(300);
-                objectAnimator.start();
+                ResizeAnimation a = new ResizeAnimation(view);
+                a.setDuration(5000);
+                a.setParams(10, 2000);
+                view.startAnimation(a);
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ObjectAnimator objectAnimator=ObjectAnimator.ofFloat(view,"ScaleX",0,1);
-                objectAnimator.setDuration(300);
-                objectAnimator.start();
+                ResizeAnimation a = new ResizeAnimation(view);
+                a.setDuration(2500);
+                a.setParams(2000, 10);
+                view.startAnimation(a);
             }
         });
     }
